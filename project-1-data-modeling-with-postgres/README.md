@@ -6,6 +6,7 @@
       - In short, understanding who(user status), where(location), when(play time), what(what songs) and how (what device).
       - The analytical goals is to understanding their members first, and improve their service from those understandings.
   <br>
+
   2. How to run the Python scripts <br>
   Run it in a terminal tab with command:
       ```
@@ -27,6 +28,7 @@
       - `etl.ipynb`: Same logic as `etl.py` but break down into smaller steps with explanations.
       - `test.ipynb` for checking if the data is inserted successfully after running `etl.py` or `etl.ipynb`.
   <br>
+  
   4. Dataset and Database Schema
       - Song dataset
         ```
