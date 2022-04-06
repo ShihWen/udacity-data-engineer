@@ -26,6 +26,7 @@
         4. Delete your redshift cluster when finished.
 <br>
 <br>
+
 ---
 
 1. Discuss the purpose of this database in context of the startup, Sparkify, and their analytical goals.
@@ -49,6 +50,7 @@
       - time - timestamps of records in songplays broken down into specific units
         |start_time | hour | day | week | month | year | weekday |
         |---|---|---|---|---|---|---|
+
 <br>
 <br>
 
