@@ -32,7 +32,7 @@
 1. Discuss the purpose of this database in context of the startup, Sparkify, and their analytical goals.
     - The purpose of the database is for the company to understand how their users in terms of who, when, what, and how in order to improve its service.
 <br>
-<br>
+
 2. State and justify your database schema design and ETL pipeline.
     - Read data into 2 staging tables namely `staging_event` and `staging_songs`, from where generates 1 fact table and 4 dimension tables listed below:
       - songplays - records in log data associated with song plays (fact table)
