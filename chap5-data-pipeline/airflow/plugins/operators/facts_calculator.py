@@ -47,7 +47,7 @@ class FactsCalculatorOperator(BaseOperator):
         # TODO: Format the `facts_sql_template` and run the query against redshift
         #
         facts_sql_template = facts_sql_template.format(
-            origin_table=self.origin_table
+            origin_table=self.origin_table,
             destination_table=self.destination_table,
             groupby_column=self.groupby_column,
             fact_column=self.fact_column

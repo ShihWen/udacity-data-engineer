@@ -117,11 +117,11 @@ check_stations = PythonOperator(
     }
 )
 '''
-check_trips = HasRowsOperator(
-    task_id='check_trips_data',
+check_stations = HasRowsOperator(
+    task_id='check_stations_data',
     dag=dag,
     redshift_conn_id='redshift',
-    table='trips'
+    table='stations'
 )
 
 
