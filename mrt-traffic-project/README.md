@@ -1,4 +1,4 @@
-# Taipei Mass Rapid Transit(MRT) Hourly Traffic Data
+# Taipei Mass Rapid Transit(MRT) Hourly Traffic Database
 
 ## Step 1: Scope the Project and Gather Data
 ### Scope
@@ -10,21 +10,32 @@ Taipei Metro was the first metro system ever built in Taiwan. The initial networ
 
 This project uses Taipei Metro hourly traffic data along with Metro station data and Metro station exit data to build a database for Metro traffic analysis.
 
-<img src="img/taipei_metro.png" alt="taipei_metro">
+<p align="center">
+  <img src="img/taipei_metro.png" alt="taipei_metro" width="700px">
+</p>
+
 
 ### Describe and Gather Data
 _Describe the data sets you're using. Where did it come from? What type of information is included?_
 
 The project includes 3 datasets from 2 sources:
-  - Taipei Metro hourly traffic data released by [Taipei Rapid Transit Corporation](https://data.gov.tw/dataset/128506) on monthly basis. Columns include date, hour, entrance_station, exit_station and traffic sequentially.<br>
-  <img src="img/stating_traffic.png" alt="stating_mrt_traffic">
+  - Taipei Metro hourly traffic data released by [Taipei Rapid Transit Corporation](https://data.gov.tw/dataset/128506) on monthly basis. Columns include date, hour, entrance_station, exit_station and traffic sequentially.
+  <p align="center">
+    <img src="img/stating_traffic.PNG" alt="stating_mrt_traffic">
+  </p>
+  
   - Metro station data from [Public Transport Data Exchange](https://ptx.transportdata.tw/MOTC/). Columns include StationID, StationAddress, BikeAllowOnHoliday, LocationCity, LocationCityCode, StationName_Zh_tw, StationName_En, StationPosition_PositionLon, StationPosition_PositionLat, StationPosition_GeoHash, VersionID. <br>
-  <img src="img/stating_station_pt1.png" alt="stating_mrt_station">
-  <img src="img/stating_station_pt2.png" alt="stating_mrt_station">
+  <p align="center">
+    <img src="img/stating_station_pt1.PNG" alt="stating_mrt_station">
+    <img src="img/stating_station_pt2.PNG" alt="stating_mrt_station">
+  </p>
+  
   - Metro station exist data from [Public Transport Data Exchange](https://ptx.transportdata.tw/MOTC/). Columns include StationID, ExitID, Stair, Escalator, Elevator, StationName_Zh_tw, StationName_En, ExitName_Zh_tw, ExitName_En, ExitPosition_PositionLon, ExitPosition_PositionLat, ExitPosition_GeoHash, VersionID.
-  <img src="img/stating_station_exit_pt1.png" alt="stating_mrt_station_exit">
-  <img src="img/stating_station_exit_pt2.png" alt="stating_mrt_station_exit">
-
+  <p align="center">  
+    <img src="img/stating_station_exit_pt1.PNG" alt="stating_mrt_station_exit">
+    <img src="img/stating_station_exit_pt2.PNG" alt="stating_mrt_station_exit">
+  </p>
+  
 ## Step 2: Explore and Assess the Data¶
 ### Explore the Data
 _Identify data quality issues, like missing values, duplicate data, etc._
@@ -41,14 +52,16 @@ _Document steps necessary to clean the data_
  - As mensioned above, __Taipei Metro hourly traffic data__ use station name, in order to join it with __Metro station data__, station name will be the join key.
  - There are 3 station names that is inconsistent between the 2 data set, namely Banqiao(BL08), Banqiao(Y16) and Daqiaotou (O12).
 
-| station name | station id | line | name in hourly traffic dataset | name in station dataset
-|---|---|---|---|---|
-| Banqiao | BL08 | Blue | BL板橋 (BL-Banqiao) | 板橋 (Banqiao) |
-| Banqiao | Y06 | Yellow | Y板橋 (Y-Banqiao) | 板橋 (Banqiao) |
-| Daqiaotou | O12 | Orange | 大橋頭站 (Daqiaotou Station) | 大橋頭(Daqiaotou) |
+    | station name | station id | line | name in hourly traffic dataset | name in station dataset
+    |---|---|---|---|---|
+    | Banqiao | BL08 | Blue | BL板橋 (BL-Banqiao) | 板橋 (Banqiao) |
+    | Banqiao | Y06 | Yellow | Y板橋 (Y-Banqiao) | 板橋 (Banqiao) |
+    | Daqiaotou | O12 | Orange | 大橋頭站 (Daqiaotou Station) | 大橋頭(Daqiaotou) |
 
-<img src="img/clean_data_1.png" alt="stating_mrt_station_exit">
-<img src="img/clean_data_2.png" alt="stating_mrt_station_exit" height="250px">
+<p align="center">
+  <img src="img/clean_data_1.png" alt="stating_mrt_station_exit" width="500px">
+  <img src="img/clean_data_2.png" alt="stating_mrt_station_exit" height="250px">
+</p>
 
 - In order to join the two dataset, adding a new column named _station_join_key_ which aligns station name based on __Taipei Metro hourly traffic data__.
 
@@ -72,7 +85,7 @@ _Document steps necessary to clean the data_
     - Generate traffic fact table
     - Check if stations in traffic fact table is align with staging station table and station dimension table. 
 
-  <img src="img/data_pipeline.png" alt="data_pipeline">
+  <img src="img/data_pipeline.PNG" alt="data_pipeline">
 
 ### Step 4: Data dictionary
   - mrt_station_dim
