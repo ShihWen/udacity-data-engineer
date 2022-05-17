@@ -36,10 +36,12 @@ class LoadDimensionOperatorMRT(BaseOperator):
         redshift = PostgresHook(postgres_conn_id=self.redshift_conn_id)
         if self.truncate_table:
             redshift.run(LoadDimensionOperatorMRT.truncate_sql.format(table=self.table))
-        
+
         #version_id = redshift.get_records("SELECT DISTINCT version_id FROM staging_station")
         #self.log.info(f'version id of staging_station: {version_id}')
-        formatted_insert_sql = LoadDimensionOperatorMRT.insert_sql.format(table=self.table, sql_query=self.sql_statement)
+        exe_date = context['execution_date']
+        formatted_insert_sql = LoadDimensionOperatorMRT.insert_sql.format(table=self.table
+                                                                          , sql_query=self.sql_statement.format(year=exe_date.year, month=exe_date.month))
         redshift.run(formatted_insert_sql)
         total_rows = redshift.get_records(f"SELECT COUNT(*) FROM {self.table}")
         self.log.info(f'Total row of {self.table}: {total_rows}')

@@ -27,6 +27,8 @@ class LoadFactOperatorMRT(BaseOperator):
         self.log.info(f'station_dim rows: {station_dim_row}')
         self.log.info(f'time_dim rows: {time_dim_row}')
         
-        formatted_sql = f"{MrtSqlQueries.insert_traffic_fact}"
+        exe_date = context['execution_date']
+        
+        formatted_sql = MrtSqlQueries.insert_traffic_fact.format(year=exe_date.year, month=exe_date.month)
         redshift.run(formatted_sql)
 

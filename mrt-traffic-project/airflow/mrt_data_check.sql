@@ -1,10 +1,14 @@
+
+/*========================================
+Check row number of single station in single hour.
+Should be same as station number.
+
+==========================================*/
 select count(*)
 from
 (
 select C.time
-       --, A.entrance_station_key
        , D.station_name_zh as entrance_station
-       --, D.station_id as entrance_id
        , A.exit_station_key
 	   , B.station_name_zh as exit_station
        , B.station_id as exit_id

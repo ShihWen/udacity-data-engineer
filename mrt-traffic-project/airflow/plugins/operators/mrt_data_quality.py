@@ -2,7 +2,7 @@ from airflow.hooks.postgres_hook import PostgresHook
 from airflow.models import BaseOperator
 from airflow.utils.decorators import apply_defaults
 
-class DataQualityOperator(BaseOperator):
+class DataQualityOperatorMRT(BaseOperator):
 
     ui_color = '#89DA59'
 
@@ -12,7 +12,7 @@ class DataQualityOperator(BaseOperator):
                  dq_checks=[],
                  *args, **kwargs):
 
-        super(DataQualityOperator, self).__init__(*args, **kwargs)
+        super(DataQualityOperatorMRT, self).__init__(*args, **kwargs)
         self.redshift_conn_id=redshift_conn_id
         self.dq_checks=dq_checks
 
@@ -26,15 +26,22 @@ class DataQualityOperator(BaseOperator):
         
         for check in self.dq_checks:
             sql = check.get('check_sql')
-            exp_result = check.get('expected_result')
-
-            records = redshift.get_records(sql)[0]
-
-            self.log.info(redshift.get_records(sql))
             
-            if exp_result != records[0]:
+            exe_date = context['execution_date']
+            formatted_sql = sql.format(year=exe_date.year, month=exe_date.month, day=exe_date.day)
+            
+            exp_sql = check.get('expected_sql')          
+            
+            check = redshift.get_records(formatted_sql)[0][0]
+            expect = redshift.get_records(exp_sql)[0][0]
+            
+            
+            self.log.info(f"check result:{redshift.get_records(formatted_sql)}")
+            self.log.info(f"expected result:{redshift.get_records(exp_sql)}")
+            
+            if check != expect:
                 error_count += 1
-                failing_tests.append(sql)
+                failing_tests.append(formatted_sql)
          
         if error_count > 0:
             self.log.info('Test failed')

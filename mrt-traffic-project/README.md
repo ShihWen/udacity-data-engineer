@@ -78,12 +78,14 @@ _Document steps necessary to clean the data_
     ```
   - Create tables with in Redshift with code from __mrt_create_tables.sql__
   - Run by data pipelines by airlfow:
-    - Load station data and station exit data from S3 bucket into stagin table in redshift.
-    - Transform station data and station exit data into format of dimension table.
-    - Schedule the process of updating traffic data from S3 into staging table in Redshift on monthly basis.
-    - Generate time dimension table from staging traffic table
-    - Generate traffic fact table
-    - Check if stations in traffic fact table is align with staging station table and station dimension table. 
+    - Set up conections including _aws_credentials_ and _redshift_
+    - Run dag:
+      - Load station data and station exit data from S3 bucket into stagin table in redshift.
+      - Transform station data and station exit data into format of dimension table.
+      - Schedule the process of updating traffic data from S3 into staging table in Redshift on monthly basis.
+      - Generate time dimension table from staging traffic table
+      - Generate traffic fact table
+      - Check if stations in traffic fact table is align with staging station table and station dimension table. 
 
   <img src="img/data_pipeline.PNG" alt="data_pipeline">
 
