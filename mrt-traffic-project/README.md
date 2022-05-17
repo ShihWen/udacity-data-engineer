@@ -77,7 +77,7 @@ _Document steps necessary to clean the data_
     redshift_cluster_create.py -c true -d false
     ```
   - Create tables with in Redshift with code from __mrt_create_tables.sql__
-  - Run by data pipelines by airlfow:
+  - Run data pipelines by airlfow:
     - Set up conections including _aws_credentials_ and _redshift_
     - Run dag:
       - Load station data and station exit data from S3 bucket into stagin table in redshift.
