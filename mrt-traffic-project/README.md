@@ -36,7 +36,7 @@ The project includes 3 datasets from 2 sources:
     <img src="img/stating_station_exit_pt2.PNG" alt="stating_mrt_station_exit">
   </p>
   
-## Step 2: Explore and Assess the Data¶
+## Step 2: Explore and Assess the Data
 ### Explore the Data
 _Identify data quality issues, like missing values, duplicate data, etc._
   - According to [Taipei Metro](https://english.metro.taipei/cp.aspx?n=E6F97A6FF9935E98), there are 131 stations, where some transfer stations are calculated as one while others calculated as two:
