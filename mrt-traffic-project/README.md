@@ -124,8 +124,7 @@ _Document steps necessary to clean the data_
     - Scheduling it in airflow dag.
   - __The database needed to be accessed by 100+ people.__
     - This can be managed by AWS IAM.
-- Example of DB output:
-  
+- __Example of DB output__:
   - Get the exit traffic of every station for for those entering Songshan Airport on 12:00, January 2nd, 2022: 
     ```
     SELECT C.time
