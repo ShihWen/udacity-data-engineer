@@ -140,3 +140,23 @@ _Document steps necessary to clean the data_
     AND C.time = '2022-01-02 12:00'
     ```
     <img src="img/db_output.PNG" alt="data_pipeline">
+  - Get total data points by each day:
+    ```
+    SELECT TRUNC(X.time) AS Date 
+          , COUNT(*)
+    FROM
+    (
+      SELECT C.time
+            , D.station_name_en AS entrance_station
+            , B.station_name_en AS exit_station
+            , B.station_id AS exit_id
+            , A.traffic
+      FROM mrt_traffic_fact A
+      LEFT JOIN mrt_station_dim B ON A.exit_station_key = B.station_key
+      LEFT JOIN mrt_station_dim D ON A.entrance_station_key = D.station_key
+      LEFT JOIN time_dim C ON A.time_key = C.time_key
+    ) X
+    GROUP BY TRUNC(X.time)
+    ORDER BY TRUNC(X.time)
+    ```
+    <img src="img/db_output2.PNG" alt="data_pipeline">
