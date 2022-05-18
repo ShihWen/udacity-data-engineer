@@ -11,7 +11,7 @@ Taipei Metro was the first metro system ever built in Taiwan. The initial networ
 This project uses Taipei Metro hourly traffic data along with Metro station data and Metro station exit data to build a database for Metro traffic analysis.
 
 <p align="center">
-  <img src="img/taipei_metro.png" alt="taipei_metro" width="700px">
+  <img src="img/taipei_metro_2.png" alt="taipei_metro" width="700px">
 </p>
 
 
