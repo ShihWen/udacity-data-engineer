@@ -110,12 +110,34 @@ _Document steps necessary to clean the data_
 
 
 ## Step 5: Complete Project Write Up
-Clearly state the rationale for the choice of tools and technologies for the project.
-Propose how often the data should be updated and why.
-Write a description of how you would approach the problem differently under the following scenarios:
- - __The data was increased by 100x.__
+- __Clearly state the rationale for the choice of tools and technologies for the project.__
+  - Redshift is designed for OLAP and BI application.
+  - MRT traffic data is a historical dataset updated on monthly basis, which is suitable for OLAP database.
+  - Redshift is following pay-as-you-go that the system can scale up or down easily when needed, which provide flexibilty compared to traditional on-premised database.
+  - User management can be achieved easily by AWS IAM, saving time and engery for IT department
+- __Propose how often the data should be updated and why.__
+  - MRT traffic data is a historical dataset released on the website on monthly basis, so it is suggested that the data should be update monthly.
+- __Write a description of how you would approach the problem differently under the following scenarios:__
+  - __The data was increased by 100x.__
     - For dataset that is 100x larger, extra number of nodes will be needed as well as upgrading node to more powerful types.
- - The data populates a dashboard that must be updated on a daily basis by 7am every day.
+  - __The data populates a dashboard that must be updated on a daily basis by 7am every day.__
     - Scheduling it in airflow dag.
- - The database needed to be accessed by 100+ people.
+  - __The database needed to be accessed by 100+ people.__
     - This can be managed by AWS IAM.
+- Example of DB output:
+  
+  - Get the exit traffic of every station for for those entering Songshan Airport on 12:00, January 2nd, 2022: 
+    ```
+    SELECT C.time
+          , D.station_name_en AS entrance_station
+          , B.station_name_en AS exit_station
+          , B.station_id AS exit_id
+          , A.traffic
+    FROM mrt_traffic_fact A
+    LEFT JOIN mrt_station_dim B ON A.exit_station_key = B.station_key
+    LEFT JOIN mrt_station_dim D ON A.entrance_station_key = D.station_key
+    LEFT JOIN time_dim C ON A.time_key = C.time_key
+    WHERE D.station_name_en = 'Songshan Airport'
+    AND C.time = '2022-01-02 12:00'
+    ```
+    <img src="img/db_output.PNG" alt="data_pipeline">
