@@ -2,7 +2,6 @@
 
 ## Step 1: Scope the Project and Gather Data
 ### Scope
-_Explain what you plan to do in the project in more detail. What data do you use? What is your end solution look like? What tools did you use? etc_
 
 Taipei Mass Rapid Transit (MRT) branded as Taipei Metro, is a rapid transit system serving the areas of Taipei and New Taipei in Taiwan, operated by the government owned Taipei Rapid Transit Corporation.
 
@@ -16,7 +15,6 @@ This project uses Taipei Metro hourly traffic data along with Metro station data
 
 
 ### Describe and Gather Data
-_Describe the data sets you're using. Where did it come from? What type of information is included?_
 
 The project includes 3 datasets from 2 sources:
   - Taipei Metro hourly traffic data released by [Taipei Rapid Transit Corporation](https://data.gov.tw/dataset/128506) on monthly basis. Columns include date, hour, entrance_station, exit_station and traffic sequentially.
@@ -38,7 +36,7 @@ The project includes 3 datasets from 2 sources:
   
 ## Step 2: Explore and Assess the Data
 ### Explore the Data
-_Identify data quality issues, like missing values, duplicate data, etc._
+
   - According to [Taipei Metro](https://english.metro.taipei/cp.aspx?n=E6F97A6FF9935E98), there are 131 stations, where some transfer stations are calculated as one while others calculated as two:
     > Transfer stations (Ximen, CKS Memorial Hall, Guting and Dongmen Stations) that connect two lines yet share only one physical station, are calculated as one station each. Other stations connecting two lines are calculated as two stations.
   - Currently there are 6 lines in service (2022/5), including Wenhu Line, Tamsui-Xinyi Line, Songshan-Xindian Line, Zhonghe-Xinlu Line, Bannan Line and Circular Line.
@@ -48,7 +46,7 @@ _Identify data quality issues, like missing values, duplicate data, etc._
   - A transfer station has two station id. For example, Tapei Main Station is a transfer station of red line and blue line. BL12 and R10 are its station id.
   - As a reulst, all transfer stations are counted as 2 in __Metro station data__, so there are in total 135 stations in the dataset. 
 ### Cleaning Steps
-_Document steps necessary to clean the data_
+
  - As mensioned above, __Taipei Metro hourly traffic data__ use station name, in order to join it with __Metro station data__, station name will be the join key.
  - There are 3 station names that is inconsistent between the 2 data set, namely Banqiao(BL08), Banqiao(Y16) and Daqiaotou (O12).
 
